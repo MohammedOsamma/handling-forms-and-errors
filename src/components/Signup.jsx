@@ -1,6 +1,23 @@
 export default function Signup() {
+  function submitHandler(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    //We can access the values of the form using the formdata object , but that is not the best way to do it
+    const email = formData.get("email");
+    const password = formData.get("password");
+    //This way we can access the values of the form using the formdata object
+    //data will be an object like this :{confirm-password:"", email: "", first-name: "", last-name: "", password:"" , role: "student"}
+    const data = Object.fromEntries(formData.entries());
+    //For example in the checkboxes we have the same name "acquisition" so the value will be an array of values
+    //We add the acquisition channel to the data object
+    const acquisitionChannel = formData.getAll("acquisition");
+    data.acquisition = acquisitionChannel;
+
+    console.log(data);
+  }
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
