@@ -13,7 +13,8 @@ export default function Signup() {
     //We add the acquisition channel to the data object
     const acquisitionChannel = formData.getAll("acquisition");
     data.acquisition = acquisitionChannel;
-
+    //If we don't add to ui reset button and need to reset the from after submit we can add this line
+    event.target.reset();
     console.log(data);
   }
   return (
